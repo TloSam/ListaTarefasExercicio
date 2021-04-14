@@ -18,7 +18,6 @@ botao.onclick = function () {
     }
     else {
         removerSpans();
-       
 
         let span = document.createElement('span');
 
@@ -35,23 +34,23 @@ botao.onclick = function () {
 
 function deletarTarefa(tar) {
 
- tarefas.splice(tarefas.indexOf(tar.textContent), 1);
-     rende();   
-     salvarDados();
-        
-    
+    tarefas.splice(tarefas.indexOf(tar.textContent), 1);
+    rende();
+    salvarDados();
+
+
 }
 function rende() {
     lista.innerHTML = '';
-   
+
     for (tarefa of tarefas) {
         //criar item da lista
-        
+
         let itemlist = document.createElement('li');
 
         //adicionar classes no item da lista
         itemlist.setAttribute('class', 'list-group-item list-group-item-action');
-        itemlist.onclick=function(){
+        itemlist.onclick = function () {
             deletarTarefa(this);
         }
         //criar um texto
@@ -79,7 +78,15 @@ function removerSpans() {
 
 rende();
 
-function salvarDados(){
- localStorage.setItem('tare', JSON.stringify(tarefas));   
+function salvarDados() {
+    localStorage.setItem('tare', JSON.stringify(tarefas));
 }
+
+
+//
+document.addEventListener('keydown', function(e) {
+    if(e.key == "Enter"){
+      document.getElementById("botao").click();
+    }
+});
 
